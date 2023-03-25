@@ -11,6 +11,44 @@
 	<link rel="stylesheet" href="index.css">
 </head>
 <body>
+	<h2 style= "margin-bottom:auto">Guest User</h2>
+	<form>
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name">
+		<!--
+    	Added label and input sections for 'name' twice due to .css issues - JB
+		-->
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name">
+		<br>
+
+		<label for="email">Email Address:</label>
+		<input type="text" id="email" name="email">
+		<br>
+
+		<label for="streamingservice">Streaming Service:</label>
+		<input type ="text" id="streamingservice" name="streamingservice">
+		<br>
+
+		<label for="genre">Prefered Genre:</label>
+			<select id="genre" name="genre">
+				<option value="action">Action</option>
+				<option value="comedy">Comedy</option>
+				<option value="drama">Drama</option>
+				<option value="fantasy">Fantasy</option>
+				<option value="horror">Horror</option>
+				<option value="mystery">Mystery</option>
+				<option value="romance">Romance</option>
+				<option value="thriller">Thriller</option>
+				<option value="western">Western</option>
+			</select><br>
+		
+		<input type="submit" value="Submit">
+
+	</form>
+
+
+
 	<header>
 		<img class="minilogo" src="minilogo.png" alt="LetsPix">
 		<nav>
@@ -24,6 +62,7 @@
 	<main>
 		<div class="Title">
 			<h1>LetsPix</h1>
+			<br>
 		</div>
 		<div class="RotateFilms">
 			<p>FILM-WHEEL</p>
