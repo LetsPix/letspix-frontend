@@ -2,19 +2,21 @@
 const url = 'http://localhost:3000/create';
 const getDate = new Date();
 
-// schema
-const newMedia = {
-    type: 'Show',
-    title: 'Brian Feddes',
-    director: 'Brian',
-    country: 'United States',
+// schema WILL COME BACK TO THIS - BF
+/*const newMedia = {
+    type: ,
+    title: ,
+    director: ,
+    country: ,
     date_added: getDate.toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'}), // this will just get the current tim
-    release_year: '2023',
-    rating: 'R',
-    duration: '60 seconds',
-    listed_in: 'Comedy',
-    description: 'Brian\'s life'
+    release_year: ,
+    rating: ,
+    duration: ,
+    listed_in: ,
+    description: ,
+    service: 
 };
+*/
 async function createMedia(url, newMedia) {
     try {
         const response = await fetch(url, {
@@ -31,3 +33,4 @@ async function createMedia(url, newMedia) {
     }
 }
 createMedia(url, newMedia);
+  
