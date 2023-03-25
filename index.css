@@ -55,7 +55,7 @@ header{
     margin-right: auto;
     background-color:#ADADAD ;
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
     height: 1000px;
 }
 
@@ -67,7 +67,7 @@ header{
     margin-top: 10px;
 }
 .form-control {text-align: center; display: inline-block; height: 40px; width: 125px;}
-.footer {position: absolute; bottom: 0; width: 100%; text-align: left; border-top: 2px solid white; margin-bottom: 0;}
+.footer {bottom: 0; width: 100%; text-align: left; border-top: 2px solid white; margin-top: 50px; margin-bottom: 0;}
 .RotateFilms {text-align: center;}
 .Title {text-align: center;}
 .Information {text-align: center;}
