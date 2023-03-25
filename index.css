@@ -8,7 +8,6 @@
 .minilogo1{
     width: 1000px;
 }
-
 header{
     font-family:'Roboto';
     font-style: normal;
@@ -34,7 +33,11 @@ header{
     margin-top: 10px;
     justify-content:start;
 }
-
+.form-control {text-align: center; display: inline-block; height: 40px; width: 125px;}
+.footer {position: absolute; bottom: 0; width: 100%; text-align: left; border-top: 2px solid white; margin-bottom: 0;}
+.RotateFilms {text-align: center;}
+.Title {text-align: center;}
+.Information {text-align: center;}
 .navlinks li {
     display: inline-block;
     align-items: start;
@@ -54,33 +57,27 @@ main {
 body {
     background-color: #817E81;
     font-family:'Roboto';
-    font-style: normal;
     font-weight: 500;
     font-size: 28px;
-    text-decoration: none;
-    display: flex;
-    padding: 10px;
     color: #FFECE8;
 }
 
-.line {
-    border: 1px solid #FFECE8;
-    width: 100%;
-
-}
-
-form {
-    float: left;
-    width: 40%;
-}
-
-form input {
-    font-size: 14px;
-    color: #333;
-    padding: 8px;
-}
-
-h1 {
-    text-align: center;
-    float: left;
-}
+a:link {
+    text-decoration: none;
+    color: whitesmoke;
+  }
+  
+  a:visited {
+    text-decoration: none;
+    color: whitesmoke;
+  }
+  
+  a:hover {
+    text-decoration: none;
+    color: whitesmoke;
+  }
+  
+  a:active {
+    text-decoration: none;
+    color: whitesmoke;
+  }
