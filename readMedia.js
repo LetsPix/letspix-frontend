@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000/all';
+const url = 'http://localhost:3000/allNetflix';
 
 async function getData(url) {
     try {
