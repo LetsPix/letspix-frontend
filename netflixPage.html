@@ -28,12 +28,49 @@
 			<h1>Netflix</h1>
 			<nav>
 				<ul class="stream_filters">
-					<li>
-						<button class="stream_button">Filter</button>
+					<li class="genres">
+						<h2 class="nav_header">Genre:</h2>
+						<select name="genres" id="stream_genre">
+							<option selected disabled></option>
+							<option value="action">Action</option>
+							<option value="comedy">Comedy</option>
+							<option value="drama">Drama</option>
+							<option value="fantasy">Fantasy</option>
+							<option value="horror">Horror</option>
+							<option value="mystery">Mystery</option>
+							<option value="romance">Romance</option>
+							<option value="thriller">Thriller</option>
+							<option value="western">Western</option>
+						</select>
+					</li>
+					<li class="type">
+						<h2 class="nav_header">Media Type:</h2>
+						<select name="type" id="stream_type">
+							<option selected disabled></option>
+							<option value="film">Film</option>
+							<option value="show">Show</option>
+						</select>
+					</li>
+					<li class="rating">
+						<h2 class="nav_header">Rating:</h2>
+						<select name="rating" id="stream_rating">
+							<option selected disabled></option>
+							<option value="TV-Y">TV-Y</option>
+							<option value="TV-Y7">TV-Y7</option>
+							<option value="TV-PG">TV-PG</option>
+							<option value="TV-14">TV-14</option>
+							<option value="TV-MA">TV-MA</option>
+							<option value="G">G</option>
+							<option value="PG">PG</option>
+							<option value="PG-13">PG-13</option>
+							<option value="R">R</option>
+							<option value="NC-17">NC-17</option>
+						</select>
 					</li>
 					<li class="sorter">
 						<h2 class="nav_header">Sort:</h2>
 						<select name="sort" id="stream_sorter">
+							<option selected disabled></option>
 							<option value="alpha_down">A-Z</option>
 							<option value="alpha_up">Z-A</option>
 							<option value="duration_down">Longest-Shortest</option>
@@ -58,6 +95,11 @@
 		<footer>
 			<p class="footer">Footer</p>	
 		</footer>
+		<script>
+			function filteralert() {
+				alert("Filter Categories Yet to be Created")
+			}
+		</script>
 	</main>
 </body>
 </html>
