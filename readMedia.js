@@ -1,8 +1,16 @@
-const url = 'http://localhost:3000/all';
+const url = 'http://localhost:3000/all/Netflix';
 
-fetch(url, {
-    method: 'GET',
-  })
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
+async function getData(url) {
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+getData(url);
+
