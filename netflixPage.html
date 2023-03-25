@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
 	crossorigin="anonymous">
+	<link rel="icon" type="image/x-icon" href="tablogo.png">
 	<link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -21,8 +22,36 @@
 		<a class="signin" href="account.html"><button>Login</button></a>
 	</header>
 	<main>
-		<div class="Title">
+		<div class="media_navbar">
 			<h1>Netflix</h1>
+			<nav>
+				<ul class="stream_filters">
+					<li>
+						<button class="stream_button">Filter</button>
+					</li>
+					<li class="sorter">
+						<h2 class="nav_header">Sort:</h2>
+						<select name="sort" id="stream_sorter">
+							<option value="alpha_down">A-Z</option>
+							<option value="alpha_up">Z-A</option>
+							<option value="duration_down">Longest-Shortest</option>
+							<option value="duration_down">Shortest-Longest</option>
+						</select>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<br>
+		<div class="media_display_panel">
+			<table class="media_display_table">
+				<tr>
+					<th>Title</th>
+					<th>Type</th>
+					<th>Rating</th>
+					<th>Duration</th>
+					<th>Listed In</th>
+				</tr>
+			</table>
 		</div>
 		<div class="line"></div>
 		<footer>
