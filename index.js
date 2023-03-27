@@ -31,21 +31,27 @@ async function createNewMedia() {
 
     // sending the data
     const url = 'http://localhost:3000/create';
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newMedia)
-        });
-        const newMediaData = await response.json();
-        console.log(newMediaData);
-    } catch (error) {
-        console.error(error);
+    const formInfo = document.getElementById('myForm');
+    if (formInfo.checkValidity()) {
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newMedia)
+            });
+            const submitButton = document.getElementById('buttonSubmit');
+            submitButton.style.display = 'none';
+            document.getElementById("createResults").innerHTML = `${title} Created Successfully.`;
+            document.getElementById('goAgain').removeAttribute('hidden');
+        } catch (error) {
+            document.getElementById("createResults").innerHTML = `Failed to create ${title}.`;
+        }
     }
 }
 
+// function to get data
 async function getData() {
     try {
         const response = await fetch('http://localhost:3000/all/Netflix', {
@@ -56,4 +62,9 @@ async function getData() {
     } catch (error) {
         console.error(error);
     }
+}
+
+// function to refresh page 
+function refreshPage() {
+    window.location.reload();
 }

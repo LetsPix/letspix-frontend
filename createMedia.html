@@ -22,7 +22,7 @@
 		</nav>
 		<a href="account.html"><p class="signin">Login</p></a>
 	</header>
-	<form class="form" id="myForm">
+	<form class="form" id="myForm" onsubmit="return false">
 		<h2 class="newMedia">Create New Media</h2> <br>
         <label for="mediaType">Media Type:</label>
         <select class="form-control" id="mediaType" name="mediaType" required>
@@ -98,6 +98,8 @@
 	  	<button type="submit" id="buttonSubmit" class="btn btn-secondary" onclick="createNewMedia()">Create</button>
 		<br>
 	</form>
+    <h4 id="createResults" class="createResults"></h4> 
+    <button type="submit" id="goAgain" class="btn btn-secondary" onclick="refreshPage()" hidden>Add Another</button>
     <script src="index.js"></script>
 </body>
 </html>
