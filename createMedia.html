@@ -22,7 +22,7 @@
 		</nav>
 		<a href="account.html"><p class="signin">Login</p></a>
 	</header>
-	<form class="form" id="myForm" onsubmit="return false">
+	<form class="form" id="myForm">
 		<h2 class="newMedia">Create New Media</h2> <br>
         <label for="mediaType">Media Type:</label>
         <select class="form-control" id="mediaType" name="mediaType" required>
@@ -30,6 +30,57 @@
             <option value="movie">Movie</option>
             <option value="show">Show</option>
         </select><br>
+
+        <label for="title">Title: </label>
+	  	<input class="form-control" type="text" id="title" name="title" required placeholder="Title"><br>
+
+          <label for="director">Director: </label>
+	  	<input class="form-control" type="text" id="director" name="director" required placeholder="Director"><br>
+
+        <label for="cast">Cast: </label>
+	  	<input class="form-control" type="text" id="cast" name="cast" required placeholder="Cast"><br>
+
+        <label for="country">Country: </label>
+	  	<input class="form-control" type="text" id="country" name="country" required placeholder="Country"><br>
+
+        <label for="releaseYear">Release Year: </label>
+	  	<input class="form-control" type="text" id="releaseYear" name="releaseYear" required placeholder="Year"><br>
+
+        <label for="rating">Rating:</label>
+        <select class="form-control" id="rating" name="rating" required>
+            <option selected disabled></option>
+            <option value="tv-ma">TV-MA</option>
+            <option value="r">R</option>
+            <option value="pg-13">PG-13</option>
+            <option value="pg">PG</option>
+            <option value="g">G</option>
+        </select><br>
+
+        <label class = "duration" for="height">Duration: </label>
+		<input class="form-control" type="number" id="mediaInfo" name="mediaInfo" min="1" required placeholder="min/season">
+
+        <select class="form-control" id="seasonMins" name="seasonMins" required>
+            <option selected disabled></option>
+            <option value="mins">mins</option>
+            <option value="seasons">seasons</option>
+        </select><br>
+
+                <!--
+            NEED TO ADD MORE GENRES
+        -->
+        <label for="genre">Genre:</label>
+        <select class="form-control" id="genre" name="genre" required>
+            <option selected disabled></option>
+            <option value="TV Dramas">Drama</option>
+            <option value="TV Mysteries">Mystery</option>
+            <option value="Crime TV Shows">Crime</option>
+            <option value="TV Action & Adventure">Action</option>
+            <option value="Docuseries">Documentary</option>
+            <option value="Reality TV">Reality</option>
+        </select><br>
+
+        <label for="mediaDescription">Description: </label>
+        <input class="form-control" type="text" id="mediaDescription" name="mediaDescription" required placeholder="Description"><br>
 
         <label for="streamingService">Streaming Service:</label>
         <select class="form-control" id="streamingService" name="streamingService" required>
@@ -40,42 +91,13 @@
             <option value="primeVideo">Prime Video</option>
             <option value="peacock">Peacock</option>
         </select><br>
-
-        <label for="title">Title: </label>
-	  	<input class="form-control" type="text" id="title" name="title" required placeholder="Title"><br>
-
-        <label for="cast">Cast: </label>
-	  	<input class="form-control" type="text" id="cast" name="cast" required placeholder="Cast"><br>
-
-        <label for="country">Country: </label>
-	  	<input class="form-control" type="text" id="country" name="country" required placeholder="Country"><br>
-
-         <label for="releaseYear">Release Year: </label>
-	  	<input class="form-control" type="text" id="releaseYear" name="releaseYear" required placeholder="Year"><br>
-
-          <label for="rating">Rating:</label>
-          <select class="form-control" id="rating" name="rating" required>
-              <option selected disabled></option>
-              <option value="tv-ma">TV-MA</option>
-              <option value="r">R</option>
-              <option value="pg-13">PG-13</option>
-              <option value="pg">PG</option>
-              <option value="g">G</option>
-          </select><br>
-
           <!--
-            NEED TO ADD DURATION IN SEASONS FOR SHOWS, MINUTES FOR MOVIES 
             NEED TO ADD LISTED_IN FOR WHAT GENRE IT'S LISTED IN. 
-            NEED TO ADD DESCRIPTION BOX 
-            NEED TO ADD WHAT SERVICE IT IS ON
           -->
 
-        <label for="cast">Cast: </label>
-	  	<input class="form-control" type="text" id="cast" name="cast" required placeholder="Cast"><br>
-
-
-	  	<button type="submit" id="buttonSubmit" class="btn btn-secondary" >Create</button>
+	  	<button type="submit" id="buttonSubmit" class="btn btn-secondary" onclick="createNewMedia()">Create</button>
 		<br>
 	</form>
+    <script src="index.js"></script>
 </body>
 </html>
