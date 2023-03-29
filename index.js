@@ -1,3 +1,13 @@
+/**
+ * Link to actual server
+ * https://letspix.azurewebsites.net
+ * Link to client
+ * https://polite-plant-0fd6d3810.2.azurestaticapps.net
+ * Link to localhost for testing 
+ * http://localhost:3000
+ */
+
+const url = 'https://letspix.azurewebsites.net';
 async function createNewMedia() {
     var getDate = new Date();
     var mediaType = document.getElementById("mediaType").value;
@@ -30,11 +40,10 @@ async function createNewMedia() {
     };
 
     // sending the data
-    const url = 'http://localhost:3000/create';
     const formInfo = document.getElementById('myForm');
     if (formInfo.checkValidity()) {
         try {
-            const response = await fetch(url, {
+            const response = await fetch(url + '/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -54,7 +63,7 @@ async function createNewMedia() {
 // function to get data
 async function getData() {
     try {
-        const response = await fetch('http://localhost:3000/all/Netflix', {
+        const response = await fetch(url + '/all/Netflix', {
             method: 'GET',
         });
         const data = await response.json();
