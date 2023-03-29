@@ -6,4 +6,6 @@
 5. The story is added to the product
 6. The story has been demoed to the client
 
+Link to Client: https://polite-plant-0fd6d3810.2.azurestaticapps.net/
+Link to Server: https://letspix.azurewebsites.net/
 Credit to Eric Pogue for the template
