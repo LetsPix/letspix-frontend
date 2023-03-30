@@ -7,7 +7,7 @@
  * http://localhost:3000
  */
 
-const url = 'https://letspix.azurewebsites.net';
+const url = 'http://localhost:3000';
 
 // Sending the data to the server to create a new media
 async function createNewMedia() {
@@ -100,3 +100,17 @@ async function getMovieTitle() {
 function refreshPage() {
     window.location.reload();
 }
+
+// function to ping the server 
+async function pingServer() {
+    try {
+        const response = await fetch(url + '/ping', {
+            method: 'GET',
+        });
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+setInterval(pingServer, 120000); // Will call it every 2 minutes to keep the server awake while the client uses it
