@@ -8,7 +8,6 @@
 	crossorigin="anonymous">
 	<link rel="icon" type="image/x-icon" href="tablogo.png">
 	<link rel="stylesheet" href="index.css">
-	<script src="readMedia.js"></script>
 </head>
 <body>
 	<header>
@@ -21,10 +20,11 @@
 				<li><a href = "createMedia.html">Create Media</a></li>
 			</ul>
 		</nav>
-		<form class="form-inline my-2 my-lg-0">
-			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		<form class="form-inline my-2 my-lg-0" id="searchForm" onsubmit="return false">
+			<input class="form-control mr-sm-2" id="searchBar" type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" id="searchButton" type="submit" onclick="getMovieTitle()">Search</button>
 		  </form>
+
 		<a href="account.html"><p class="signin">Login</p></a>
 	</header>
 	<main>
@@ -64,10 +64,13 @@
 					<button type="submit" id="buttonSubmit" class="button btn btn-light" >Submit</button>
 					<br>
 			</form>
+			<h4 id="searchType"></h4>
+			<h4 id="searchTitle"></h4>
+			<h4 id="searchCast"></h4>
 		<footer>
 				<p class="footer"><a href="https://getting-to-know-each-other-scrumps-node.azurewebsites.net/">About Us</a></p>	
 		</footer>
 	</main>
-	
+	<script src="index.js"></script>
 </body>
 </html>
