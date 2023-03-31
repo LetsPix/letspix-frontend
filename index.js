@@ -7,7 +7,7 @@
  * http://localhost:3000
  */
 
-const url = 'http://localhost:3000';
+const url = 'https://letspix.azurewebsites.net';
 
 // Sending the data to the server to create a new media
 async function createNewMedia() {
