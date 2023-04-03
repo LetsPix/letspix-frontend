@@ -7,7 +7,10 @@
  * http://localhost:3000
  */
 
-const url = 'https://letspix.azurewebsites.net';
+const url = 'http://localhost:3000';
+/**
+* Note to myself: dont forget to change url back to 'https://letspix.azurewebsites.net' after testing!! - JB
+*/
 
 // Sending the data to the server to create a new media
 async function createNewMedia() {
@@ -74,6 +77,20 @@ async function getData() {
         console.error(error);
     }
 }
+
+// function to read the data from the /api/netflix/all endpoint - JB
+async function getNetflixMediaData() {
+    try {
+        const response = await fetch(url + '/api/netflix/all', {
+            method: 'GET',
+        });
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 
 // function to read data pertaining to a specific film. Filters by title.
 async function getMovieTitle() {
