@@ -10,7 +10,7 @@
 	<link rel="icon" type="image/x-icon" href="tablogo.png">
 	<link rel="stylesheet" href="index.css">
 </head>
-<body>
+<body onload="getMovieTitle()">
 	<header>
 		<img class="minilogo" src="minilogo.png" alt="LetsPix">
 		<nav>
@@ -25,12 +25,15 @@
 	</header>
 	<main>
 		<div class="Title">
-			<h1>Account</h1>
+			<h1>Media info</h1>
 		</div>
+        <h4 id="searchType"></h4>
+        <h4 id="searchTitle"></h4>
+        <h4 id="searchCast"></h4>
 		<footer class="footer">
 			<p>Footer</p>	
 		</footer>
 	</main>
-
+	<script src="index.js"></script>
 </body>
 </html>
