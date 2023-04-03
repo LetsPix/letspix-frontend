@@ -4,65 +4,32 @@
 	<meta charset="utf-8">
 	<title>LetsPix</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
 	crossorigin="anonymous">
 	<link rel="icon" type="image/x-icon" href="tablogo.png">
 	<link rel="stylesheet" href="index.css">
 </head>
-<body>
-	<h2 style= "margin-bottom:auto">Guest User</h2>
-	<form>
-		<label for="name">Name:</label>
-		<input type="text" id="name" name="name">
-		<!--
-    	Added label and input sections for 'name' twice due to .css issues - JB
-		-->
-		<label for="name">Name:</label>
-		<input type="text" id="name" name="name">
-		<br>
-
-		<label for="email">Email Address:</label>
-		<input type="text" id="email" name="email">
-		<br>
-
-		<label for="streamingservice">Streaming Service:</label>
-		<input type ="text" id="streamingservice" name="streamingservice">
-		<br>
-
-		<label for="genre">Prefered Genre:</label>
-			<select id="genre" name="genre">
-				<option value="action">Action</option>
-				<option value="comedy">Comedy</option>
-				<option value="drama">Drama</option>
-				<option value="fantasy">Fantasy</option>
-				<option value="horror">Horror</option>
-				<option value="mystery">Mystery</option>
-				<option value="romance">Romance</option>
-				<option value="thriller">Thriller</option>
-				<option value="western">Western</option>
-			</select><br>
-		
-		<input type="submit" value="Submit">
-
-	</form>
-
-
-
+<body onload="pingServer()">
 	<header>
 		<img class="minilogo" src="minilogo.png" alt="LetsPix">
 		<nav>
 			<ul class="navlinks">
+				<li><a href="index.html">Home</a></li>
 				<li><a href="letspixer.html">LetsPixer</a></li>
 				<li><a href="netflixPage.html">Netflix </a></li>
+				<li><a href = "createMedia.html">Create Media</a></li>
 			</ul>
 		</nav>
-		<a class="signin" href="account.html"><button>Login</button></a>
+		<form class="form-inline my-2 my-lg-0" id="searchForm" onsubmit="return false">
+			<input class="form-control mr-sm-2" id="searchBar" type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" id="searchButton" type="submit" onclick="getMovieTitle()">Search</button>
+		  </form>
+
+		<a href="account.html"><p class="signin">Login</p></a>
 	</header>
 	<main>
 		<div class="Title">
 			<h1>LetsPix</h1>
-			<br>
 		</div>
 		<div class="RotateFilms">
 			<p>FILM-WHEEL</p>
@@ -70,14 +37,40 @@
 		<div class="Information">
 			<p>Information</p>
 		</div>
-		<div class="Streaming">
-			<p>Streaming Serives Provided</p>
-		</div>
-		<div class="line"></div>
+			<form class="form">
+				<label for="streamingService">Streaming Service:</label>
+				<select class="form-control" id="streamingService" name="streamingService" required>
+					<option selected disabled></option>
+					<option value="netflix">Netflix</option>
+					<option value="hulu">Hulu</option>
+					<option value="disney">Disney+</option>
+					<option value="primeVideo">Prime Video</option>
+					<option value="peacock">Peacock</option>
+				</select><br>
+
+				<label for="genre">Preferred Genre: </label>
+				<select class="form-control" id="genre" name="genre" required>
+					<option selected disabled></option>
+					<option value="action">Action</option>
+					<option value="comedy">Comedy</option>
+					<option value="drama">Drama</option>
+					<option value="fantasy">Fantasy</option>
+					<option value="horror">Horror</option>
+					<option value="mystery">Mystery</option>
+					<option value="romance">Romance</option>
+					<option value="thriller">Thriller</option>
+					<option value="western">Western</option>
+					</select><br>
+					<button type="submit" id="buttonSubmit" class="button btn btn-light" >Submit</button>
+					<br>
+			</form>
+			<h4 id="searchType"></h4>
+			<h4 id="searchTitle"></h4>
+			<h4 id="searchCast"></h4>
 		<footer>
-			<p>Footer</p>	
+				<p class="footer"><a href="https://getting-to-know-each-other-scrumps-node.azurewebsites.net/">About Us</a></p>	
 		</footer>
 	</main>
-	
+	<script src="index.js"></script>
 </body>
 </html>
