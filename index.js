@@ -7,7 +7,7 @@
  * http://localhost:3000
  */
 
-const url = 'http://localhost:3000';
+const url = 'https://letspix.azurewebsites.net';
 /**
 * Note to myself: dont forget to change url back to 'https://letspix.azurewebsites.net' after testing!! - JB
 */
@@ -79,6 +79,7 @@ async function getData() {
 }
 
 // function to read the data from the /api/netflix/all endpoint - JB
+// Thank you w3schools for the table methods info!
 async function getNetflixMediaData() {
     try {
         const response = await fetch(url + '/api/netflix/all', {
@@ -86,10 +87,27 @@ async function getNetflixMediaData() {
         });
         const data = await response.json();
         console.log(data);
+
+        var table = document.getElementById("media_display_table");
+        for (const item of data) {
+            var row = table.insertRow()
+            var titleCell = row.insertCell(0);
+            var typeCell = row.insertCell(1);
+            var ratingCell = row.insertCell(2);
+            var durationCell = row.insertCell(3);
+            //var listedInCell = row.insertCell(4);
+            
+            titleCell.innerHTML = item.title;
+            typeCell.innerHTML = item.type;
+            ratingCell.innerHTML = item.rating;
+            durationCell.innerHTML = item.duration;
+            //listedIn.innerHTML = item.listed_in;
+        }
     } catch (error) {
         console.error(error);
     }
 }
+
 
 
 // function to read data pertaining to a specific film. Filters by title.

@@ -9,6 +9,7 @@
 	crossorigin="anonymous">
 	<link rel="icon" type="image/x-icon" href="tablogo.png">
 	<link rel="stylesheet" href="index.css">
+	<script src="index.js"></script>
 </head>
 <body>
 	<header>
@@ -46,7 +47,7 @@
 					<li class="type">
 						<h2 class="nav_header">Media Type:</h2>
 						<select name="type" id="stream_type">
-							<option selected disabled></option>
+							<option value="both">All Media</option>
 							<option value="film">Film</option>
 							<option value="show">Show</option>
 						</select>
@@ -77,12 +78,15 @@
 							<option value="duration_down">Shortest-Longest</option>
 						</select>
 					</li>
+					<li>
+						<button onclick="getNetflixMediaData()">Search</button>
+					</li>
 				</ul>
 			</nav>
 		</div>
 		<br>
 		<div class="media_display_panel">
-			<table class="media_display_table">
+			<table class="media_display_table", id="media_display_table">
 				<tr>
 					<th>Title</th>
 					<th>Type</th>
