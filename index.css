@@ -24,6 +24,7 @@ header{
     height: 60px;
     top: 0;
     left: 0;
+    z-index: 1;
 }
 
 .media_navbar{
@@ -114,6 +115,11 @@ body {
     font-size: 28px;
     color: #FFECE8;
 }
+
+.w-100 {
+    width: 22% !important;
+    height: 75vh;
+  }
 
 a:link {
     text-decoration: none;
