@@ -140,3 +140,8 @@ a:link {
     text-decoration: none;
     color: whitesmoke;
   }
+
+
+  .logos {
+    border-radius: 100px;
+  }
