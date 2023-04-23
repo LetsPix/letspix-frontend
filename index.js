@@ -65,6 +65,28 @@ async function createNewMedia() {
     }
 }
 
+async function searchButton() {
+    let table = document.getElementById("media_display_table");
+    var rowCount = table.rows.length; // Thanks Mudasssar Khan from ASPSNIPPETS for this code deleting all but the first row of an HTML table
+    for (var i = rowCount - 1; i > 0; i--) {
+        table.deleteRow(i);
+    }
+    try {
+        let temp = document.getElementById("stream_type");
+        let mediaType = temp.value;
+        
+        if (mediaType == "both"){
+            getNetflixMediaData();
+        } else if (mediaType == "film") {
+            getNetflixMovieData();
+        } else {
+            getNetflixShowData();
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 // function to read the data from the /all/Netflix endpoint (this grabs all shows and movies on Netflix)
 async function getData() {
     try {
@@ -78,37 +100,70 @@ async function getData() {
     }
 }
 
+async function displayTitles(data, mediaType) {
+    try {
+        var table = document.getElementById("media_display_table");
+        for (const item of data) {
+            if (mediaType.includes(item.type)) {
+                var row = table.insertRow()
+                var titleCell = row.insertCell(0);
+                var typeCell = row.insertCell(1);
+                var ratingCell = row.insertCell(2);
+                var durationCell = row.insertCell(3);
+                //var listedInCell = row.insertCell(4);
+                
+                titleCell.innerHTML = item.title;
+                typeCell.innerHTML = item.type;
+                ratingCell.innerHTML = item.rating;
+                durationCell.innerHTML = item.duration;
+                //listedIn.innerHTML = item.listed_in;
+            }
+        }
+    } catch(error) {
+        console.error(error);
+    }
+}
+
 // function to read the data from the /api/netflix/all endpoint - JB
 // Thank you w3schools for the table methods info!
 async function getNetflixMediaData() {
     try {
-        const response = await fetch(url + '/api/netflix/all', {
+        let response = await fetch(url + '/api/netflix/all', {
             method: 'GET',
         });
-        const data = await response.json();
+        var data = await response.json();
         console.log(data);
-
-        var table = document.getElementById("media_display_table");
-        for (const item of data) {
-            var row = table.insertRow()
-            var titleCell = row.insertCell(0);
-            var typeCell = row.insertCell(1);
-            var ratingCell = row.insertCell(2);
-            var durationCell = row.insertCell(3);
-            //var listedInCell = row.insertCell(4);
-            
-            titleCell.innerHTML = item.title;
-            typeCell.innerHTML = item.type;
-            ratingCell.innerHTML = item.rating;
-            durationCell.innerHTML = item.duration;
-            //listedIn.innerHTML = item.listed_in;
-        }
+        displayTitles(data, ["TV Show", "Movie"]);
     } catch (error) {
         console.error(error);
     }
 }
 
+async function getNetflixMovieData() {
+    try {
+        let response = await fetch(url + '/api/netflix/all', {
+            method: 'GET',
+        });
+        var data = await response.json();
+        console.log(data);
+        displayTitles(data, ["Movie"]);
+    } catch (error) {
+        console.error(error);
+    }
+}
 
+async function getNetflixShowData() {
+    try {
+        let response = await fetch(url + '/api/netflix/all', {
+            method: 'GET',
+        });
+        var data = await response.json();
+        console.log(data);
+        displayTitles(data, ["TV Show"]);
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 // function to read data pertaining to a specific film. Filters by title.
 async function getMovieTitle() {
@@ -148,6 +203,7 @@ async function pingServer() {
         console.error(error);
     }
 }
+/*
 $('#recipeCarousel').carousel({
     interval: 10000
   })
@@ -169,5 +225,5 @@ $('#recipeCarousel').carousel({
           next.children(':first-child').clone().appendTo($(this));
         }
   });
-  
+*/
 setInterval(pingServer, 120000); // Will call it every 2 minutes to keep the server awake while the client uses it
