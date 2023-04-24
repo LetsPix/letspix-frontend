@@ -1,134 +1,235 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="utf-8">
-	<title>LetsPix</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
-	crossorigin="anonymous">
-	<link rel="icon" type="image/x-icon" href="tablogo.png">
-	<link rel="stylesheet" href="index.css">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Letspix</title>
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" 
+        integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" 
+        crossorigin="anonymous">
+</script> 
+<style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      padding: 25px;
+    }
+        /* Add styles for logo */
+        .navbar-brand {
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        .navbar-brand img {
+          height: 100%;
+          width: auto;
+          max-width: 200px; /* Adjust the maximum width to your preference */
+        }
+        
+    .my-card {
+      /* Other styles */
+      padding: 0;
+      margin: 0;
+      overflow: hidden; /* To ensure the image stays within the card boundaries */
+      border-radius: 5px; /* Optional: to round the corners of the card */
+    }
+    
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block; /* To remove any default spacing around the image */
+    }
+    
+    .card-carousel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .card-carousel .my-card {
+      height: 40rem;
+      width: 22.5rem;
+      position: relative;
+      z-index: 1;
+      -webkit-transform: scale(0.6) translateY(-2rem);
+      transform: scale(0.6) translateY(-2rem);
+      opacity: 0;
+      cursor: pointer;
+      pointer-events: none;
+      background: #2e5266;
+      background: linear-gradient(to top, #2e5266, #6e8898);
+      transition: 1s;
+    }
+    
+    .card-carousel .my-card:after {
+      content: '';
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      border-radius: 100%;
+      background-color: rgba(0,0,0,0.3);
+      bottom: -5rem;
+      -webkit-filter: blur(4px);
+      filter: blur(4px);
+    }
+    
+    .card-carousel .my-card.active {
+      z-index: 3;
+      -webkit-transform: scale(1) translateY(0) translateX(0);
+      transform: scale(1) translateY(0) translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+      transition: 1s;
+    }
+    
+    .card-carousel .my-card.prev, .card-carousel .my-card.next {
+      z-index: 2;
+      -webkit-transform: scale(0.8) translateY(-1rem) translateX(0);
+      transform: scale(0.8) translateY(-1rem) translateX(0);
+      opacity: 0.6;
+      pointer-events: auto;
+      transition: 1s;
+    }
+  body {
+    background-color: #252121; /* Light gray background */
+    /* background-color: #e0f0ff; Light blue background - Uncomment this line and comment the line above if you prefer a light blue background */
+  }
+      /* Apply background color to surrounding banners */
+      .heading img {
+        display: block; /* This ensures the image is centered within its parent container */
+        margin: 0 auto; /* This centers the image horizontally within the parent container */
+      }
+  </style>
 </head>
-<body onload="pingServer()">
-	<header>
-		<img class="minilogo" src="minilogo.png" alt="LetsPix">
-		<nav>
-			<ul class="navlinks">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="letspixer.html">LetsPixer</a></li>
-				<li><a href="netflixPage.html">Netflix </a></li>
-				<li><a href = "createMedia.html">Create Media</a></li>
-			</ul>
-		</nav>
-		<form class="form-inline my-2 my-lg-0" id="searchForm" onsubmit="return false">
-			<input class="form-control mr-sm-2" id="searchBar" type="search" placeholder="Search" aria-label="Search">
-			<button class="btn btn-outline-success my-2 my-sm-0" id="searchButton" type="submit" onclick="getMovieTitle()">Search</button>
-		  </form>
+<body>
 
-		<a href="account.html"><p class="signin">Login</p></a>
-	</header>
-	<main>
-		<div class="Title">
-			<h1>LetsPix</h1>
-		</div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="index.html">  <img src="./images/Letspix-icon.png" width="200" height="200" class="d-inline-block align-top" alt="image"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="netflixPage.html" target="_blank">Find Media</a></li>
+        <li><a href="createMedia.html" target="_blank">Add Media</a></li>
+        <li><a href="https://getting-to-know-each-other-scrumps-node.azurewebsites.net/" target="_blank">About Us</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-		<!--FILM ROTATION MACHINE-->
-		<!--Thanks to: https://getbootstrap.com/docs/4.0/components/carousel/ -->
-		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-			<ol class="carousel-indicators">
-			  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-			  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-			  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-			  <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-			</ol>
-			<div class="carousel-inner">
-			  <div class="carousel-item active">
-				<div class="d-flex justify-content-center">
-				<img class="d-block w-100" src="RRR.jpg" alt="First slide">
-				</div>
-			  </div>
-			  <div class="carousel-item">
-				<div class="d-flex justify-content-center">
-				<img class="d-block w-100" src="Ash vs Evil.jpg" alt="Second slide">
-				</div>
-			  </div>
-			  <div class="carousel-item">
-				<div class="d-flex justify-content-center">
-				<img class="d-block w-100" src="Breaking Bad.jpg" alt="Third slide">
-				</div>
-			  </div>
-			  <div class="carousel-item">
-				<div class="d-flex justify-content-center">
-				<img class="d-block w-100" src="Monty Python.jpg" alt="Fourth slide">
-				</div>
-			  </div>
-			</div>
-			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-			  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			  <span class="sr-only">Previous</span>
-			</a>
-			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			  <span class="sr-only">Next</span>
-			</a>
-		  </div>
+<div class="heading"> <img src="./images/Letspix-1.png" width="300" height ="300">
+</div>
+<div class="card-carousel">
+  <div class="my-card"><img src="./images/RRR.jpg" alt="Card Image 1" class="card-image"></div>
+  <div class="my-card"><img src="./images/Breaking Bad.jpg" alt="Card Image 2" class="card-image"></div>
+  <div class="my-card"><img src="./images/Monty Python.jpg" alt="Card Image 3" class="card-image"></div>
+  <div class="my-card"><img src="./images/Saul.jpg" alt="Card Image 4" class="card-image"></div>
+  <div class="my-card"><img src="./images/Steve.jpg" alt="Card Image 5" class="card-image"></div>
+  <div class="my-card"><img src="./images/aot.jpg" alt="Card Image 6" class="card-image"></div>
+  <div class="my-card"><img src="./images/Bee.jpg" alt="Card Image 7" class="card-image"></div>
+  <div class="my-card"><img src="./images/B2F.jpg" alt="Card Image 8" class="card-image"></div>
+  <div class="my-card"><img src="./images/Jaws.jpg" alt="Card Image 9" class="card-image"></div>
+  
+</div>
+
+<script>
+$num = $('.my-card').length;
+$even = $num / 2;
+$odd = ($num + 1) / 2;
+
+i$num = $('.my-card').length;
+$even = $num / 2;
+$odd = ($num + 1) / 2;
+
+if ($num % 2 == 0) {
+  $('.my-card:nth-child(' + $even + ')').addClass('active');
+  $('.my-card:nth-child(' + $even + ')').prev().addClass('prev');
+  $('.my-card:nth-child(' + $even + ')').next().addClass('next');
+} else {
+  $('.my-card:nth-child(' + $odd + ')').addClass('active');
+  $('.my-card:nth-child(' + $odd + ')').prev().addClass('prev');
+  $('.my-card:nth-child(' + $odd + ')').next().addClass('next');
+}
+
+$('.my-card').click(function() {
+  $slide = $('.active').width();
+  console.log($('.active').position().left);
+  
+  if ($(this).hasClass('next')) {
+    $('.card-carousel').stop(false, true).animate({left: '-=' + $slide});
+  } else if ($(this).hasClass('prev')) {
+    $('.card-carousel').stop(false, true).animate({left: '+=' + $slide});
+  }
+  
+  $(this).removeClass('prev next');
+  $(this).siblings().removeClass('prev active next');
+  
+  $(this).addClass('active');
+  $(this).prev().addClass('prev');
+  $(this).next().addClass('next');
+});
 
 
-		<div class="Information">
-			<p>Welcome to LetsPix! Gone are the days of endless scrolling only to watch a movie you've seen a million times.
-			Here we want to provide you the ability to simply select your preferences and let our service provide you options 
-			for your next streaming adventure. Currently we are still devloping our LetsPixer algorithm, but for now please 
-			feel free to explore our limited capabilities of exploring what is currently available on Netflix. Below is our list of 
-			provided streaming services as well as planned expansions. Use the search feature at the top to recieve basic information 
-			about any tv show or movie available at the bottom of the home page. We can't wait to help you on your streaming journey.
-		 </p>
-			<table class="media_display_table", id="media_display_table">
-				<tr>
-					<th><a href="netflixPage.html"> <img class="logos" src="netflix-logo-circle-png-5.png" alt="Netflix"> </a></th>
-					<th><img class="logos" src="disney-plus.png" alt="Disney+"><br>UNDER DEVLOPMENT</th>
-					<th><img class="logos" src="hulu-logo.png" alt="Hulu"><br>UNDER DEVLOPMENT</th>
-					<th><img class="logos" src="prime-video-square.png" alt="Prime Video"><br>UNDER DEVLOPMENT</th>
-					<th><img class="logos" src="peacock-logo.png" alt="Peacock"><br>UNDER DEVLOPMENT</th>
-				</tr>
-			</table>
-		</div>
-			<form class="form">
-				<label for="streamingService">Streaming Service:</label>
-				<select class="form-control" id="streamingService" name="streamingService" required>
-					<option selected disabled></option>
-					<option value="netflix">Netflix</option>
-					<option value="hulu">Hulu</option>
-					<option value="disney">Disney+</option>
-					<option value="primeVideo">Prime Video</option>
-					<option value="peacock">Peacock</option>
-				</select><br>
+// Keyboard nav
+$('html body').keydown(function(e) {
+  if (e.keyCode == 37) { // left
+    $('.active').prev().trigger('click');
+  }
+  else if (e.keyCode == 39) { // right
+    $('.active').next().trigger('click');
+  }
+});
+</script>
 
-				<label for="genre">Preferred Genre: </label>
-				<select class="form-control" id="genre" name="genre" required>
-					<option selected disabled></option>
-					<option value="action">Action</option>
-					<option value="comedy">Comedy</option>
-					<option value="drama">Drama</option>
-					<option value="fantasy">Fantasy</option>
-					<option value="horror">Horror</option>
-					<option value="mystery">Mystery</option>
-					<option value="romance">Romance</option>
-					<option value="thriller">Thriller</option>
-					<option value="western">Western</option>
-					</select><br>
-					<button type="submit" id="buttonSubmit" class="button btn btn-light" >Submit</button>
-					<br>
-			</form>
-			<h4 id="searchType"></h4>
-			<h4 id="searchTitle"></h4>
-			<h4 id="searchCast"></h4>
-		<footer>
-				<p class="footer"><a href="https://getting-to-know-each-other-scrumps-node.azurewebsites.net/">About Us</a></p>	
-		</footer>
-	</main>
-	<script src="index.js"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+
+<footer class="container-fluid text-center">
+  <p>Welcome!</p>
+</footer>
+
 </body>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } 
+  from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
+  import { getDatabase } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+  apiKey: "AIzaSyBPEu118kxD5PHGS99ri5MlqZQ9PVUbqbg",
+  authDomain: "letspix-users.firebaseapp.com",
+  projectId: "letspix-users",
+  storageBucket: "letspix-users.appspot.com",
+  messagingSenderId: "494666586548",
+  appId: "1:494666586548:web:cb38808aa74554aa997ae1"
+  };
+  
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  var auth = getAuth(app);
+  var database = getDatabase(app);
+  </script>
 </html>

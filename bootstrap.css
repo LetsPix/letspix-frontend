@@ -92,8 +92,13 @@ body {
   background-color: #252121; /* Light gray background */
   /* background-color: #e0f0ff; Light blue background - Uncomment this line and comment the line above if you prefer a light blue background */
 }
-    /* Apply background color to surrounding banners */
-    .heading img {
-      display: block; /* This ensures the image is centered within its parent container */
-      margin: 0 auto; /* This centers the image horizontally within the parent container */
-    } 
+
+body {
+  background-color: #252121; /* Light gray background */
+  /* background-color: #e0f0ff; Light blue background - Uncomment this line and comment the line above if you prefer a light blue background */
+}
+/* Apply background color to surrounding banners */
+.heading img {
+  display: block; /* This ensures the image is centered within its parent container */
+  margin: 0 auto; /* This centers the image horizontally within the parent container */
+}
