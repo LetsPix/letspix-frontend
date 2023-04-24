@@ -1,3 +1,4 @@
+
 /**
  * Link to actual server
  * https://letspix.azurewebsites.net/
@@ -7,7 +8,7 @@
  * http://localhost:3000
  */
 
-const url = 'https://letspix.azurewebsites.net';
+const url = 'https://letspix.azurewebsites.net/';
 /**
 * Note to myself: dont forget to change url back to 'https://letspix.azurewebsites.net' after testing!! - JB
 */
@@ -183,6 +184,105 @@ async function getMovieTitle() {
         console.log(data);
     } catch (error) {
         console.error(error);
+    }
+}
+
+// *************************************
+// login in and authenitcation functions
+// *************************************
+
+// register function
+// function register() {
+//     console.log('REGISTER INITIATED')
+//     // retrieve registration info
+//     email = document.getElementById('email_signup').value
+//     password = document.getElementById('password_signup').value
+//     //passwordConfirmation = document.getElementById('password_signup_confirmation').value
+//     username = document.getElementById('username_signup').value
+//     securityQuestion = document.getElementById('security_question_signup').value
+//     // validate inputs
+//     if (validateEmail(email) == false){
+//         alert('No Valid Email Found')
+//         return
+//     }
+//     if (validatePassword(password) == false){
+//         alert('Password Does Not Meet Requirements')
+//         return
+//     }
+//     if (validateField(username)==false){
+//         alert('Username Required')
+//         return
+//     }
+//     if (validateField(securityQuestion)==false){
+//         alert('Security Question Required')
+//         return
+//     }
+//     // Authentication
+//     auth.createUserWithEmailAndPassword(email,password)
+//     .then(function(){
+//     // user object
+//     var user = auth.currentUser
+    
+
+//     // firebase database
+//     var databaseRef = database.ref()
+
+//     // create user
+//     var userData = {
+//         email: email,
+//         username : username,
+//         securityQuestion : securityQuestion,
+//         last_login : Date.now(),
+//         watched : null
+//     }
+//     databaseRef.child('users/'+user.uid).set(userData)
+//     })
+//     .catch(function(error){
+//         // firebase errors
+//         var errorCode = error.error_code
+//         var errorMessage = error.message
+//         alert(errorMessage)
+//     })
+
+//     alert('User Created')
+//     window.location.href = "account.html";
+// }
+
+
+
+function validateEmail(email){
+    expression = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    if (expression.test(email)==true){
+        return true
+    } else {
+        return false
+    }
+}
+
+function validatePassword(password){
+    if (password < 6){
+        return false
+    } else {
+        return true
+    }
+}
+
+function validatePasswordConfirmation(password,passwordConfirmation){
+    if (password.localeCompare(passwordConfirmation)==0){
+        return true
+    } else {
+        return false
+    }
+}
+
+function validateField(field){
+    if (field == null){
+        return false
+    }
+    if (field.length <= 0){
+        return false
+    } else {
+        return true
     }
 }
 

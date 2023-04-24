@@ -25,7 +25,7 @@
 			<button class="btn btn-outline-success my-2 my-sm-0" id="searchButton" type="submit" onclick="getMovieTitle()">Search</button>
 		  </form>
 
-		<a href="account.html"><p class="signin">Login</p></a>
+		<a href="login.html"><p class="signin">Login</p></a>
 	</header>
 	<main>
 		<div class="Title">
@@ -126,6 +126,28 @@
 				<p class="footer"><a href="https://getting-to-know-each-other-scrumps-node.azurewebsites.net/">About Us</a></p>	
 		</footer>
 	</main>
+	<script type="module">
+		// Import the functions you need from the SDKs you need
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+		import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } 
+		from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
+		import { getDatabase } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+	
+		// Your web app's Firebase configuration
+		const firebaseConfig = {
+		apiKey: "AIzaSyBPEu118kxD5PHGS99ri5MlqZQ9PVUbqbg",
+		authDomain: "letspix-users.firebaseapp.com",
+		projectId: "letspix-users",
+		storageBucket: "letspix-users.appspot.com",
+		messagingSenderId: "494666586548",
+		appId: "1:494666586548:web:cb38808aa74554aa997ae1"
+	  };
+	  
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
+		var auth = getAuth(app);
+		var database = getDatabase(app);
+	  </script>
 	<script src="index.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>

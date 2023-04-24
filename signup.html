@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>LetsPix - Sign-Up</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+	crossorigin="anonymous">
+	<link rel="icon" type="image/x-icon" href="tablogo.png">
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<div id="signup_container">
+        <div id="signup_info_container" >
+            <h1>Register</h1>
+            <input type="email" id="email_signup" placeholder="Email">
+            <br>
+            <input type="password" id="password_signup" placeholder="Password">
+            <br>
+            <!--<input type="password" id="password_signup_confirmation" placeholder="Confirm Password">
+            <br>-->
+            <input type="text" id="username_signup" placeholder="Username">
+            <br>
+            <input type="text" id="security_question_signup" placeholder="What's your favorite color? (TEMP)">
+            <br>
+            <button id="signup_button">Register Now</button>
+            <div class="line"></div>
+            <p>Already have an account? <a href="login.html">Sign-In Here.</a></p>
+        </div>
+    </div>
+    <script src="index.js"></script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+      import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } 
+      from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
+      import { getDatabase, ref} from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+  
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+      apiKey: "AIzaSyBPEu118kxD5PHGS99ri5MlqZQ9PVUbqbg",
+      authDomain: "letspix-users.firebaseapp.com",
+      projectId: "letspix-users",
+      storageBucket: "letspix-users.appspot.com",
+      messagingSenderId: "494666586548",
+      appId: "1:494666586548:web:cb38808aa74554aa997ae1"
+    };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      var auth = getAuth(app);
+      var database = getDatabase(app);
+
+      const signupbutton = document.querySelector('#signup_button')
+
+      const register = async() => {
+        console.log('REGISTER INITIATED')
+        // retrieve registration info
+        const email = document.getElementById('email_signup').value
+        const password = document.getElementById('password_signup').value
+        //passwordConfirmation = document.getElementById('password_signup_confirmation').value
+        const username = document.getElementById('username_signup').value
+        const securityQuestion = document.getElementById('security_question_signup').value
+        // validate inputs
+        if (validateEmail(email) == false){
+            alert('No Valid Email Found')
+            return
+        }
+        if (validatePassword(password) == false){
+            alert('Password Does Not Meet Requirements')
+            return
+        }
+        if (validateField(username)==false){
+            alert('Username Required')
+            return
+        }
+        if (validateField(securityQuestion)==false){
+            alert('Security Question Required')
+            return
+        }
+        // Authentication
+        createUserWithEmailAndPassword(auth,email,password)
+        .then(function(){
+        // user object
+        var user = auth.currentUser
+        
+
+        // // firebase database
+        // var databaseRef = database.ref()
+
+        // // create user
+        // var userData = {
+        //     email: email,
+        //     username : username,
+        //     securityQuestion : securityQuestion,
+        //     last_login : Date.now(),
+        //     watched : null
+        // }
+        // databaseRef.child('users/'+user.uid).set(userData)
+        alert('User Created')
+        window.location.href = "account.html";
+        })
+        .catch(function(error){
+            // firebase errors
+            var errorCode = error.error_code
+            var errorMessage = error.message
+            alert(errorMessage)
+        })
+      }
+      signupbutton.addEventListener('click',register)
+    </script>
+    
+</body>
+</html>

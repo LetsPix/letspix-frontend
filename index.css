@@ -116,6 +116,13 @@ body {
     color: #FFECE8;
 }
 
+.line {
+    border: 1px solid whitesmoke;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .w-100 {
     width: 22% !important;
     height: 75vh;
