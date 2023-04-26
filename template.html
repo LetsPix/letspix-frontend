@@ -18,11 +18,6 @@
       margin-bottom: 0;
       border-radius: 0;
     }
-    
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      padding: 25px;
-    }
         /* Add styles for logo */
         .navbar-brand {
           padding: 0;
@@ -36,73 +31,6 @@
           width: auto;
           max-width: 200px; /* Adjust the maximum width to your preference */
         }
-        
-    .my-card {
-      /* Other styles */
-      padding: 0;
-      margin: 0;
-      overflow: hidden; /* To ensure the image stays within the card boundaries */
-      border-radius: 5px; /* Optional: to round the corners of the card */
-    }
-    
-    .card-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block; /* To remove any default spacing around the image */
-    }
-    
-    .card-carousel {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    
-    .card-carousel .my-card {
-      height: 40rem;
-      width: 22.5rem;
-      position: relative;
-      z-index: 1;
-      -webkit-transform: scale(0.6) translateY(-2rem);
-      transform: scale(0.6) translateY(-2rem);
-      opacity: 0;
-      cursor: pointer;
-      pointer-events: none;
-      background: #2e5266;
-      background: linear-gradient(to top, #2e5266, #6e8898);
-      transition: 1s;
-    }
-    
-    .card-carousel .my-card:after {
-      content: '';
-      position: absolute;
-      height: 2px;
-      width: 100%;
-      border-radius: 100%;
-      background-color: rgba(0,0,0,0.3);
-      bottom: -5rem;
-      -webkit-filter: blur(4px);
-      filter: blur(4px);
-    }
-    
-    .card-carousel .my-card.active {
-      z-index: 3;
-      -webkit-transform: scale(1) translateY(0) translateX(0);
-      transform: scale(1) translateY(0) translateX(0);
-      opacity: 1;
-      pointer-events: auto;
-      transition: 1s;
-    }
-    
-    .card-carousel .my-card.prev, .card-carousel .my-card.next {
-      z-index: 2;
-      -webkit-transform: scale(0.8) translateY(-1rem) translateX(0);
-      transform: scale(0.8) translateY(-1rem) translateX(0);
-      opacity: 0.6;
-      pointer-events: auto;
-      transition: 1s;
-    }
   body {
     background-color: #252121; /* Light gray background */
     /* background-color: #e0f0ff; Light blue background - Uncomment this line and comment the line above if you prefer a light blue background */
@@ -139,77 +67,5 @@
   </div>
 </nav>
 
-
-<script>
-$num = $('.my-card').length;
-$even = $num / 2;
-$odd = ($num + 1) / 2;
-
-i$num = $('.my-card').length;
-$even = $num / 2;
-$odd = ($num + 1) / 2;
-
-if ($num % 2 == 0) {
-  $('.my-card:nth-child(' + $even + ')').addClass('active');
-  $('.my-card:nth-child(' + $even + ')').prev().addClass('prev');
-  $('.my-card:nth-child(' + $even + ')').next().addClass('next');
-} else {
-  $('.my-card:nth-child(' + $odd + ')').addClass('active');
-  $('.my-card:nth-child(' + $odd + ')').prev().addClass('prev');
-  $('.my-card:nth-child(' + $odd + ')').next().addClass('next');
-}
-
-$('.my-card').click(function() {
-  $slide = $('.active').width();
-  console.log($('.active').position().left);
-  
-  if ($(this).hasClass('next')) {
-    $('.card-carousel').stop(false, true).animate({left: '-=' + $slide});
-  } else if ($(this).hasClass('prev')) {
-    $('.card-carousel').stop(false, true).animate({left: '+=' + $slide});
-  }
-  
-  $(this).removeClass('prev next');
-  $(this).siblings().removeClass('prev active next');
-  
-  $(this).addClass('active');
-  $(this).prev().addClass('prev');
-  $(this).next().addClass('next');
-});
-
-
-// Keyboard nav
-$('html body').keydown(function(e) {
-  if (e.keyCode == 37) { // left
-    $('.active').prev().trigger('click');
-  }
-  else if (e.keyCode == 39) { // right
-    $('.active').next().trigger('click');
-  }
-});
-</script>
-
 </body>
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
-  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } 
-  from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
-  import { getDatabase } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-  apiKey: "AIzaSyBPEu118kxD5PHGS99ri5MlqZQ9PVUbqbg",
-  authDomain: "letspix-users.firebaseapp.com",
-  projectId: "letspix-users",
-  storageBucket: "letspix-users.appspot.com",
-  messagingSenderId: "494666586548",
-  appId: "1:494666586548:web:cb38808aa74554aa997ae1"
-  };
-  
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  var auth = getAuth(app);
-  var database = getDatabase(app);
-  </script>
 </html>
