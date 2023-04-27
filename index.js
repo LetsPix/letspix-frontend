@@ -137,16 +137,8 @@ function refreshPage() {
 }
 
 // function to ping the server 
-async function pingServer() {
-    try {
-        const response = await fetch(url + '/ping', {
-            method: 'GET',
-        });
-        const data = await response.json();
-        console.log(data);
-    } catch (error) {
-        console.error(error);
-    }
+async function ping() {
+    const res = await fetch(url + "/ping")
 }
 $('#recipeCarousel').carousel({
     interval: 10000
@@ -169,5 +161,5 @@ $('#recipeCarousel').carousel({
           next.children(':first-child').clone().appendTo($(this));
         }
   });
-  
-setInterval(pingServer, 120000); // Will call it every 2 minutes to keep the server awake while the client uses it
+
+setInterval(ping, 120000); // Will call it every 2 minutes to keep the server awake while the client uses it
