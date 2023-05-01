@@ -7,7 +7,7 @@
  * http://localhost:3000
  */
 
-const url = 'https://letspix.azurewebsites.net';
+const url = 'http://localhost:3000';
 /**
 * Note to myself: dont forget to change url back to 'https://letspix.azurewebsites.net' after testing!! - JB
 */
@@ -44,24 +44,47 @@ async function createNewMedia() {
         service: streamingService
     };
 
-    // sending the data
-    const formInfo = document.getElementById('myForm');
-    if (formInfo.checkValidity()) {
-        try {
-            const response = await fetch(url + '/create', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(newMedia)
-            });
-            const submitButton = document.getElementById('buttonSubmit');
-            submitButton.style.display = 'none';
-            document.getElementById("createResults").innerHTML = `${title} Created Successfully.`;
-            document.getElementById('goAgain').removeAttribute('hidden');
-        } catch (error) {
-            document.getElementById("createResults").innerHTML = `Failed to create ${title}.`;
+// sending the data
+const formInfo = document.getElementById('myForm');
+if (formInfo.checkValidity()) {
+    try {
+        const response = await fetch(url + '/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newMedia)
+        });
+        const submitButton = document.getElementById('buttonSubmit');
+        submitButton.style.display = 'none';
+        document.getElementById("createResults").innerHTML = `${title} Created Successfully.`;
+        document.getElementById('goAgain').removeAttribute('hidden');
+    } catch (error) {
+        document.getElementById("createResults").innerHTML = `Failed to create ${title}.`;
+    }
+}
+}
+
+async function searchButton() {
+    let table = document.getElementById("media_display_table");
+    var rowCount = table.rows.length; // Thanks Mudasssar Khan from ASPSNIPPETS for this code deleting all but the first row of an HTML table
+    for (var i = rowCount - 1; i > 0; i--) {
+        table.deleteRow(i);
+    }
+    try {
+        let temp = document.getElementById("stream_type");
+        let mediaType = temp.value;
+        
+        if (mediaType == "both"){
+            getNetflixMediaData();
+        } else if (mediaType == "movie") {
+            getNetflixMovieData();
+        } else {
+            getNetflixShowData();
         }
+        
+    } catch (error) {
+        console.error(error);
     }
 }
 
@@ -74,6 +97,30 @@ async function getData() {
         const data = await response.json();
         console.log(data);
     } catch (error) {
+        console.error(error);
+    }
+}
+
+async function displayTitles(data, mediaType) {
+    try {
+        var table = document.getElementById("media_display_table");
+        for (const item of data) {
+            if (mediaType.includes(item.type)) {
+                var row = table.insertRow()
+                var titleCell = row.insertCell(0);
+                var typeCell = row.insertCell(1);
+                var ratingCell = row.insertCell(2);
+                var durationCell = row.insertCell(3);
+                //var listedInCell = row.insertCell(4);
+                
+                titleCell.innerHTML = item.title;
+                typeCell.innerHTML = item.type;
+                ratingCell.innerHTML = item.rating;
+                durationCell.innerHTML = item.duration;
+                //listedIn.innerHTML = item.listed_in;
+            }
+        }
+    } catch(error) {
         console.error(error);
     }
 }
@@ -108,7 +155,62 @@ async function getNetflixMediaData() {
     }
 }
 
+async function getNetflixMovieData() {
+    try {
+        let response = await fetch(url + '/api/netflix/all', {
+            method: 'GET',
+        });
+        var data = await response.json();
+        console.log(data);
+        displayTitles(data, ["Movie"]);
+    } catch (error) {
+        console.error(error);
+    }
+}
 
+async function getNetflixShowData() {
+    try {
+        let response = await fetch(url + '/api/netflix/all', {
+            method: 'GET',
+        });
+        var data = await response.json();
+        console.log(data);
+        displayTitles(data, ["TV Show"]);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// function to filter between movie and show
+async function getMediaType() {
+    const typeOfMedia = document.getElementById("stream_type").value;
+    try {
+        const response = await fetch(url + '/api/all', {
+            method: 'GET',
+        });
+        body: JSON.stringify({ mediaType: typeOfMedia })
+        const data = await response.json();
+        console.log(data);
+
+        var table = document.getElementById("media_display_table");
+        for (const item of data) {
+            var row = table.insertRow()
+            var titleCell = row.insertCell(0);
+            var typeCell = row.insertCell(1);
+            var ratingCell = row.insertCell(2);
+            var durationCell = row.insertCell(3);
+            //var listedInCell = row.insertCell(4);
+            
+            titleCell.innerHTML = item.title;
+            typeCell.innerHTML = item.type;
+            ratingCell.innerHTML = item.rating;
+            durationCell.innerHTML = item.duration;
+            //listedIn.innerHTML = item.listed_in;
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 // function to read data pertaining to a specific film. Filters by title.
 async function getMovieTitle() {
@@ -131,6 +233,7 @@ async function getMovieTitle() {
     }
 }
 
+
 // function to refresh page 
 function refreshPage() {
     window.location.reload();
@@ -140,26 +243,5 @@ function refreshPage() {
 async function ping() {
     const res = await fetch(url + "/ping")
 }
-$('#recipeCarousel').carousel({
-    interval: 10000
-  })
-  
-  $('.carousel .carousel-item').each(function(){
-      var minPerSlide = 3;
-      var next = $(this).next();
-      if (!next.length) {
-      next = $(this).siblings(':first');
-      }
-      next.children(':first-child').clone().appendTo($(this));
-      
-      for (var i=0;i<minPerSlide;i++) {
-          next=next.next();
-          if (!next.length) {
-              next = $(this).siblings(':first');
-            }
-          
-          next.children(':first-child').clone().appendTo($(this));
-        }
-  });
 
 setInterval(ping, 120000); // Will call it every 2 minutes to keep the server awake while the client uses it
