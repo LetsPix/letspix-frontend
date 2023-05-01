@@ -7,7 +7,7 @@
  * http://localhost:3000
  */
 
-const url = 'http://localhost:3000';
+const url = 'https://letspix.azurewebsites.net';
 /**
 * Note to myself: dont forget to change url back to 'https://letspix.azurewebsites.net' after testing!! - JB
 */
