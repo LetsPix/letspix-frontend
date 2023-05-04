@@ -72,20 +72,7 @@ async function searchButton() {
         table.deleteRow(i);
     }
     try {
-        let temp = document.getElementById("stream_type");
-        let mediaType = temp.value;
-        let temp2 = document.getElementById("stream_sorter");
-        if (temp2 == "alpha_down") {
-            sortAlphabetically();
-        }
-        if (mediaType == "both"){
-            getNetflixMediaData();
-        } else if (mediaType == "movie") {
-            getNetflixMovieData();
-        } else {
-            getNetflixShowData();
-        }
-
+        getNetflixMediaData();
     } catch (error) {
         console.error(error);
     }
@@ -137,7 +124,39 @@ async function getNetflixMediaData() {
         });
         const data = await response.json();
         console.log(data);
-
+        let temp2 = document.getElementById("stream_sorter");
+        let sortedAlphabetically = temp2.value;
+        if (sortedAlphabetically == "alpha_down") {
+            data.sort((a, b) => {
+                if (a.title < b.title) {
+                    return -1;
+                } else if (a.title > b.title) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
+        } else if (sortedAlphabetically == "alpha_up") {
+            data.sort((a, b) => {
+                if (a.title > b.title) {
+                    return -1;
+                } else if (a.title < b.title) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
+        }
+        let temp = document.getElementById("stream_type");
+        let mediaType = temp.value;
+        if (mediaType == "both") {
+            displayTitles(data, [""]);
+        } else if (mediaType == "movie") {
+            displayTitles(data, ["Movie"]);
+        } else if (mediaType == "show") {
+            displayTitles(data, ["TV Show"]);
+            
+        }
         var table = document.getElementById("media_display_table");
         for (const item of data) {
             var row = table.insertRow()
@@ -153,6 +172,7 @@ async function getNetflixMediaData() {
             durationCell.innerHTML = item.duration;
             //listedIn.innerHTML = item.listed_in;
         }
+        return data;
     } catch (error) {
         console.error(error);
     }
@@ -170,6 +190,7 @@ async function getNetflixMovieData() {
         console.error(error);
     }
 }
+
 
 async function getNetflixShowData() {
     try {
@@ -210,21 +231,6 @@ async function getMediaType() {
             durationCell.innerHTML = item.duration;
             //listedIn.innerHTML = item.listed_in;
         }
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-// sorting the media alphabetically
-async function sortAlphabetically() {
-    try {
-        let response = await fetch(url + '/api/all', {
-            method: 'GET',
-        });
-        var data = await response.json();
-        var sortedData = data.slice().sort();
-        console.log(sortedData);
-        displayTitles(sortedData);
     } catch (error) {
         console.error(error);
     }
