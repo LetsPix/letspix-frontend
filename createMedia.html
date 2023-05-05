@@ -75,8 +75,8 @@
       <label for="mediaType">Media Type:</label>
       <select class="form-control" id="mediaType" name="mediaType" required>
           <option selected disabled></option>
-          <option value="movie">Movie</option>
-          <option value="show">Show</option>
+          <option value="Movie">Movie</option>
+          <option value="TV Show">Show</option>
       </select><br>
 
       <label for="title">Title: </label>
@@ -97,11 +97,16 @@
       <label for="rating">Rating:</label>
       <select class="form-control" id="rating" name="rating" required>
           <option selected disabled></option>
-          <option value="tv-ma">TV-MA</option>
-          <option value="r">R</option>
-          <option value="pg-13">PG-13</option>
-          <option value="pg">PG</option>
-          <option value="g">G</option>
+          <option value="TV-Y">TV-Y</option>
+          <option value="TV-Y7">TV-Y7</option>
+          <option value="TV-PG">TV-PG</option>
+          <option value="TV-14">TV-14</option>
+          <option value="TV-MA">TV-MA</option>
+          <option value="G">G</option>
+          <option value="PG">PG</option>
+          <option value="PG-13">PG-13</option>
+          <option value="R">R</option>
+          <option value="NC-17">NC-17</option>
       </select><br>
 
       <label class = "duration" for="height">Duration: </label>
@@ -113,18 +118,23 @@
           <option value="seasons">seasons</option>
       </select><br>
 
-              <!--
-          NEED TO ADD MORE GENRES
-      -->
       <label for="genre">Genre:</label>
       <select class="form-control" id="genre" name="genre" required>
-          <option selected disabled></option>
-          <option value="TV Dramas">Drama</option>
-          <option value="TV Mysteries">Mystery</option>
-          <option value="Crime TV Shows">Crime</option>
-          <option value="TV Action & Adventure">Action</option>
-          <option value="Docuseries">Documentary</option>
-          <option value="Reality TV">Reality</option>
+        <option value="Drama">Drama</option>
+        <option value="Independent Movies">Independent Movies</option>
+        <option value="International Movies">International Movies</option>
+        <option value="International TV Shows">International TV Shows</option>
+        <option value="Documentaries">Documentaries</option>
+        <option value="TV Drama">TV Drama</option>
+        <option value="TV Mystery">TV Mystery</option>
+        <option value="Crime TV Show">Crime TV Show</option>
+        <option value="TV Action and Adventure">TV Action and Adventure</option>
+        <option value="Docuseries">Docuseries</option>
+        <option value="Reality TV">Reality TV</option>
+        <option value="Children and Family Movies">Children and Family Movies</option>
+        <option value="British TV Show">British TV Show</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Spanish-Language TV Show">Spanish-Language TV Show</option>
       </select><br>
 
       <label for="mediaDescription">Description: </label>
@@ -133,11 +143,10 @@
       <label for="streamingService">Streaming Service:</label>
       <select class="form-control" id="streamingService" name="streamingService" required>
           <option selected disabled></option>
-          <option value="netflix">Netflix</option>
-          <option value="hulu">Hulu</option>
-          <option value="disney">Disney+</option>
-          <option value="primeVideo">Prime Video</option>
-          <option value="peacock">Peacock</option>
+          <option value="Netflix">Netflix</option>
+          <option value="Hulu">Hulu</option>
+          <option value="Disney+">Disney+</option>
+          <option value="Amazon Prime">Prime Video</option>
       </select><br>
         <!--
           NEED TO ADD LISTED_IN FOR WHAT GENRE IT'S LISTED IN. 
