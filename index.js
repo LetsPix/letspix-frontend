@@ -73,9 +73,10 @@ async function searchButton() {
     } else {
         var ratings = [document.getElementById("stream_rating").value]
     }
-
     if (document.getElementById("stream_genre").value == 'all') {
-        var genres = ['action', 'comedy', 'drama', 'fantasy', 'horror', 'mystery', 'romance', 'thriller', 'western']
+        var genres = ['Drama', 'Independent Movies', 'International Movies', 'International TV Shows', 'Documentaries', 'TV Drama',
+        'TV Mysteries', 'Crime TV Shows', 'TV Action & Adventure', 'Docuseries', 'Reality TV', 'TV Horror', 'TV Mysteries',
+        'Children & Family Movies', 'British TV Shows', 'Thrillers', 'Spanish-Language TV Shows']    
     } else {
         var genres = [document.getElementById("stream_genre").value]
     }
@@ -115,7 +116,7 @@ async function displayTitles(data, mediaType, ratings, genres) {
     try {
         var table = document.getElementById("media_display_table");
         for (const item of data) {
-            if (mediaType.includes(item.type) && ratings.includes(item.rating)) {
+            if (mediaType.includes(item.type) && ratings.includes(item.rating) && genres.includes(item.listed_in)) {
                 var row = table.insertRow()
                 var titleCell = row.insertCell(0);
                 var typeCell = row.insertCell(1);
@@ -234,7 +235,7 @@ async function getMediaType() {
             typeCell.innerHTML = item.type;
             ratingCell.innerHTML = item.rating;
             durationCell.innerHTML = item.duration;
-            listedIn.innerHTML = item.listed_in;
+            //listedIn.innerHTML = item.listed_in;
         }
     } catch (error) {
         console.error(error);
