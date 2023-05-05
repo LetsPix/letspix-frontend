@@ -69,7 +69,7 @@ async function searchButton() {
     let table = document.getElementById("media_display_table");
     var rowCount = table.rows.length; // Thanks Mudasssar Khan from ASPSNIPPETS for this code deleting all but the first row of an HTML table
     if (document.getElementById("stream_rating").value == 'all') {
-        var ratings = ['TV-Y', 'TV-Y7', 'TV-PG', 'TV-14', 'TV-MA', 'G', 'PG', 'PG-13', 'R', 'NC-17']
+        var ratings = ['Netflix', 'TV-Y7', 'TV-PG', 'TV-14', 'TV-MA', 'G', 'PG', 'PG-13', 'R', 'NC-17']
     } else {
         var ratings = [document.getElementById("stream_rating").value]
     }
@@ -79,11 +79,20 @@ async function searchButton() {
     } else {
         var genres = [document.getElementById("stream_genre").value]
     }
+
+    if (document.getElementById("stream_service").value == 'all') {
+        var serviceURL = '/all'
+        console.log(serviceURL)
+    } else {
+        var serviceURL = "/" + document.getElementById("stream_service").value + "/all"
+        console.log(serviceURL)
+    }
+
     for (var i = rowCount - 1; i > 0; i--) {
         table.deleteRow(i);
     }
     try {
-        getNetflixMediaData(ratings,genres);
+        getNetflixMediaData(ratings,genres,serviceURL);
     } catch (error) {
         console.error(error);
     }
@@ -128,9 +137,9 @@ async function displayTitles(data, mediaType, ratings, genres) {
 
 // function to read the data from the /api/netflix/all endpoint - JB
 // Thank you w3schools for the table methods info!
-async function getNetflixMediaData(ratings, genres) {
+async function getNetflixMediaData(ratings, genres, serviceURL) {
     try {
-        const response = await fetch(url + '/api/netflix/all', {
+        const response = await fetch(url + '/api' + serviceURL, {
             method: 'GET',
         });
         const data = await response.json();
