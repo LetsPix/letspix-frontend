@@ -12,6 +12,7 @@
         integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" 
         crossorigin="anonymous">
 </script> 
+<script src="index.js"></script>
 <link rel="stylesheet" href="./style/index.css">
 <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -75,7 +76,7 @@
                 <li class="genres">
                     <h2 class="nav_header">Genre:</h2>
                     <select name="genres" id="stream_genre">
-                        <option selected disabled></option>
+                        <option value='all'>All</option>
                         <option value="action">Action</option>
                         <option value="comedy">Comedy</option>
                         <option value="drama">Drama</option>
@@ -98,7 +99,7 @@
                 <li class="rating">
                     <h2 class="nav_header">Rating:</h2>
                     <select name="rating" id="stream_rating">
-                        <option selected disabled></option>
+                        <option value="all">All</option>
                         <option value="TV-Y">TV-Y</option>
                         <option value="TV-Y7">TV-Y7</option>
                         <option value="TV-PG">TV-PG</option>

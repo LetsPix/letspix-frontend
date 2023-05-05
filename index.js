@@ -68,11 +68,22 @@ if (formInfo.checkValidity()) {
 async function searchButton() {
     let table = document.getElementById("media_display_table");
     var rowCount = table.rows.length; // Thanks Mudasssar Khan from ASPSNIPPETS for this code deleting all but the first row of an HTML table
+    if (document.getElementById("stream_rating").value == 'all') {
+        var ratings = ['TV-Y', 'TV-Y7', 'TV-PG', 'TV-14', 'TV-MA', 'G', 'PG', 'PG-13', 'R', 'NC-17']
+    } else {
+        var ratings = [document.getElementById("stream_rating").value]
+    }
+
+    if (document.getElementById("stream_genre").value == 'all') {
+        var genres = ['action', 'comedy', 'drama', 'fantasy', 'horror', 'mystery', 'romance', 'thriller', 'western']
+    } else {
+        var genres = [document.getElementById("stream_genre").value]
+    }
     for (var i = rowCount - 1; i > 0; i--) {
         table.deleteRow(i);
     }
     try {
-        getNetflixMediaData();
+        getNetflixMediaData(ratings,genres);
     } catch (error) {
         console.error(error);
     }
@@ -91,11 +102,11 @@ async function getData() {
     }
 }
 
-async function displayTitles(data, mediaType) {
+async function displayTitles(data, mediaType, ratings, genres) {
     try {
         var table = document.getElementById("media_display_table");
         for (const item of data) {
-            if (mediaType.includes(item.type)) {
+            if (mediaType.includes(item.type) && ratings.includes(item.rating)) {
                 var row = table.insertRow()
                 var titleCell = row.insertCell(0);
                 var typeCell = row.insertCell(1);
@@ -117,7 +128,7 @@ async function displayTitles(data, mediaType) {
 
 // function to read the data from the /api/netflix/all endpoint - JB
 // Thank you w3schools for the table methods info!
-async function getNetflixMediaData() {
+async function getNetflixMediaData(ratings, genres) {
     try {
         const response = await fetch(url + '/api/netflix/all', {
             method: 'GET',
@@ -150,27 +161,12 @@ async function getNetflixMediaData() {
         let temp = document.getElementById("stream_type");
         let mediaType = temp.value;
         if (mediaType == "both") {
-            displayTitles(data, [""]);
+            displayTitles(data, ["Movie", "TV Show"], ratings,genres);
         } else if (mediaType == "movie") {
-            displayTitles(data, ["Movie"]);
+            displayTitles(data, ["Movie"], ratings, genres);
         } else if (mediaType == "show") {
-            displayTitles(data, ["TV Show"]);
+            displayTitles(data, ["TV Show"], ratings, genres);
             
-        }
-        var table = document.getElementById("media_display_table");
-        for (const item of data) {
-            var row = table.insertRow()
-            var titleCell = row.insertCell(0);
-            var typeCell = row.insertCell(1);
-            var ratingCell = row.insertCell(2);
-            var durationCell = row.insertCell(3);
-            //var listedInCell = row.insertCell(4);
-            
-            titleCell.innerHTML = item.title;
-            typeCell.innerHTML = item.type;
-            ratingCell.innerHTML = item.rating;
-            durationCell.innerHTML = item.duration;
-            //listedIn.innerHTML = item.listed_in;
         }
         return data;
     } catch (error) {
