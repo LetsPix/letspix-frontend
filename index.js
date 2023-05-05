@@ -121,13 +121,13 @@ async function displayTitles(data, mediaType, ratings, genres) {
                 var typeCell = row.insertCell(1);
                 var ratingCell = row.insertCell(2);
                 var durationCell = row.insertCell(3);
-                //var listedInCell = row.insertCell(4);
+                var listedInCell = row.insertCell(4);
                 
                 titleCell.innerHTML = item.title;
                 typeCell.innerHTML = item.type;
                 ratingCell.innerHTML = item.rating;
                 durationCell.innerHTML = item.duration;
-                //listedIn.innerHTML = item.listed_in;
+                listedInCell.innerHTML = item.listed_in;
             }
         }
     } catch(error) {
@@ -234,7 +234,7 @@ async function getMediaType() {
             typeCell.innerHTML = item.type;
             ratingCell.innerHTML = item.rating;
             durationCell.innerHTML = item.duration;
-            //listedIn.innerHTML = item.listed_in;
+            listedIn.innerHTML = item.listed_in;
         }
     } catch (error) {
         console.error(error);
