@@ -73,13 +73,13 @@ async function searchButton() {
     } else {
         var ratings = [document.getElementById("stream_rating").value]
     }
-    if (document.getElementById("stream_genre").value == 'all') {
-        var genres = ['Drama', 'Independent Movies', 'International Movies', 'International TV Shows', 'Documentaries', 'TV Drama',
-        'TV Mysteries', 'Crime TV Shows', 'TV Action & Adventure', 'Docuseries', 'Reality TV', 'TV Horror', 'TV Mysteries',
-        'Children & Family Movies', 'British TV Shows', 'Thrillers', 'Spanish-Language TV Shows']    
-    } else {
-        var genres = [document.getElementById("stream_genre").value]
-    }
+    //if (document.getElementById("stream_genre").value == 'all') {
+        //var genres = ['Drama', 'Independent Movies', 'International Movies', 'International TV Shows', 'Documentaries', 'TV Drama',
+        //'TV Mysteries', 'Crime TV Shows', 'TV Action & Adventure', 'Docuseries', 'Reality TV', 'TV Horror', 'TV Mysteries',
+        //'Children & Family Movies', 'British TV Shows', 'Thrillers', 'Spanish-Language TV Shows']    
+    //} else {
+        //var genres = [document.getElementById("stream_genre").value]
+    //}
 
     if (document.getElementById("stream_service").value == 'all') {
         var serviceURL = '/all'
@@ -93,7 +93,7 @@ async function searchButton() {
         table.deleteRow(i);
     }
     try {
-        getNetflixMediaData(ratings,genres,serviceURL);
+        getNetflixMediaData(ratings, serviceURL);
     } catch (error) {
         console.error(error);
     }
@@ -116,7 +116,7 @@ async function displayTitles(data, mediaType, ratings, genres) {
     try {
         var table = document.getElementById("media_display_table");
         for (const item of data) {
-            if (mediaType.includes(item.type) && ratings.includes(item.rating) && genres.includes(item.listed_in)) {
+            if (mediaType.includes(item.type) && ratings.includes(item.rating)) {
                 var row = table.insertRow()
                 var titleCell = row.insertCell(0);
                 var typeCell = row.insertCell(1);
@@ -138,7 +138,7 @@ async function displayTitles(data, mediaType, ratings, genres) {
 
 // function to read the data from the /api/netflix/all endpoint - JB
 // Thank you w3schools for the table methods info!
-async function getNetflixMediaData(ratings, genres, serviceURL) {
+async function getNetflixMediaData(ratings, serviceURL) {
     try {
         const response = await fetch(url + '/api' + serviceURL, {
             method: 'GET',
@@ -171,11 +171,11 @@ async function getNetflixMediaData(ratings, genres, serviceURL) {
         let temp = document.getElementById("stream_type");
         let mediaType = temp.value;
         if (mediaType == "both") {
-            displayTitles(data, ["Movie", "TV Show"], ratings,genres);
+            displayTitles(data, ["Movie", "TV Show"], ratings);
         } else if (mediaType == "movie") {
-            displayTitles(data, ["Movie"], ratings, genres);
+            displayTitles(data, ["Movie"], ratings);
         } else if (mediaType == "show") {
-            displayTitles(data, ["TV Show"], ratings, genres);
+            displayTitles(data, ["TV Show"], ratings);
             
         }
         return data;
